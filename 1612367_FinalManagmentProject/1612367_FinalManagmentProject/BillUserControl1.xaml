@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="_1612367_FinalManagmentProject.BillUserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+             mc:Ignorable="d" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="530" d:DesignWidth="940" Background="White">
+    <Canvas>
+        <Label Content="HÓA ĐƠN" FontSize="30" Canvas.Left="400" Canvas.Top="15"></Label>
+        <Grid  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               Height="436" HorizontalAlignment="Center" Background="White"  Width="900" Canvas.Top="80" Canvas.Left="8">
+            <DataGrid Name="ReceiptDataGrid" SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                      Margin="17,5,5,11" CanUserResizeColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=order}" Header="STT" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameReceipt}" Header="Hóa đơn" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameCustomer}" Header="Khách hàng" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding Path=shortDate}" Header="Ngày xuất" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=stringSumMoney}" Header="Tổng tiền" Width="100"/>
+                    <DataGridTextColumn Binding="{Binding Path=sumScore}" Header="Tổng điểm" Width="SizeToHeader"/>
+
+                    <!--Nút detail-->
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="bntDetail" Click="bntDetail_Click">
+                                    <materialDesign:PackIcon Kind="Details" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!--Nút delete-->
+                    <!--
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDelete" Click="btnDelete_Click">
+                                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!--btn Add-->
+        <Button Name="btnAdd" Click="btnAdd_Click" Canvas.Left="855" Canvas.Top="441" Background="#FF34BB2D" BorderBrush="{x:Null}">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+            </Button.Effect>
+            <materialDesign:PackIcon Kind="Add" Width="20" Height="20" VerticalAlignment="Center"/>
+        </Button>
+
+        <!--dialog show thông tin hóa đơn-->
+        <materialDesign:DialogHost Name="dialogReceiptDetailShow" CloseOnClickAway="True"
+                                   IsOpen="False" Width="930" Height="550" Canvas.Top="20" Canvas.Left="5">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="10,5,8,5">
+
+                    <UniformGrid  Columns="2" Margin="173,10,182,40" >
+                        <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Khách hàng: "/>
+
+                        <Label x:Name="lblNameCustomer" Visibility="Visible" Margin="-152,10,0,10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên Khách hàng" Width="256"/>
+                    </UniformGrid>
+
+                    <Grid Height="377">
+                        <DataGrid x:Name="DetailReceiptDataGridShow"  VerticalScrollBarVisibility="Auto"  SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                     CanUserResizeColumns="False" IsReadOnly="True" Margin="5,9,15,50"  ItemsSource="{Binding listDetailReciept}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding order}" Header="STT" Width="SizeToHeader"/>
+                                <DataGridTextColumn Binding="{Binding nameProduct}" Header="Tên hàng" Width="140"/>
+                                <DataGridTextColumn Binding="{Binding quantity}" Header="SL" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding size}" Header="Size" Width="55"/>
+                                <DataGridTextColumn Binding="{Binding unitPriceSell}" Header="Đơn giá" Width="SizeToHeader"/>
+                                <DataGridTextColumn Binding="{Binding nameDiscount}" Header="Tên Ưu đãi" Width="140"/>
+                                <DataGridTextColumn Binding="{Binding discountString}" Header="Ưu đãi" Width="SizeToHeader"/>
+
+                                <DataGridTextColumn Binding="{Binding stringSumMoney}" Header="Thành tiền" Foreground="#FCC014" Width="SizeToHeader"/>
+                                <DataGridTextColumn Binding="{Binding sumScore}" Header="Tổng Điểm" Foreground="#FCC014" Width="SizeToHeader"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label x:Name="SumMoneyLableShow" Content="Tổng tiền: 0đ" Foreground="#FBC31F" Margin="371,326,149,10"/>
+                        <Label x:Name="SumScoreLableShow" Content="Tổng điểm: 0" Foreground="#FBC31F" Margin="220,326,438,10"/>
+                        <Button x:Name="bntClose" Click="bntClose_Click" Width="98" Height="Auto" HorizontalAlignment="Center" Content="Đóng" Background="#EA4335"  Margin="682,327,104,15" BorderBrush="{x:Null}">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                            </Button.Effect>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+        <!--dialog thêm/ sửa thông tin hóa đơn-->
+        <materialDesign:DialogHost Name="dialogReceipt" CloseOnClickAway="True"
+                                   IsOpen="False"  Width="930" Height="550" Canvas.Top="20" Canvas.Left="5">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Width="850" Margin="5, 5, 5, 5">
+                    <UniformGrid  Columns="2" Margin="173,10,182,40" >
+                        <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Khách hàng"/>
+                        <ComboBox Name="comboBoxCustomer"  VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" />
+                        <Label Name="nameCustomerLable" Visibility="Collapsed" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên Khách hàng"/>
+                    </UniformGrid>
+
+                    <UniformGrid  Columns="3"  Margin="15,0,0, 15" >
+                        <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên sản phẩm"/>
+                        <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size"/>
+                        <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Số lượng"/>
+
+                        <ComboBox Name="comboBoxNameProduct" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" />
+                        <ComboBox Name="comboBoxSize"  VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,13" Width="122" />
+                        <TextBox Name="quantityTxt" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" Height="30" />
+
+                    </UniformGrid>
+                    <Button x:Name="btnAddDetail" Click="btnAddDetail_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Thêm" Background="#FF34BB2D"  Margin="650,0,50,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+
+                    <Grid Height="229">
+                        <DataGrid Name="DetailReceiptDataGrid"  VerticalScrollBarVisibility="Auto"  SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                     CanUserResizeColumns="False" IsReadOnly="True" Margin="5,9,15,80"  ItemsSource="{Binding listDetailReciept}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=order}" Header="STT" Width="SizeToHeader"/>
+                                <DataGridTextColumn Binding="{Binding Path=nameProduct}" Header="Tên hàng" Width="140"/>
+                                <DataGridTextColumn Binding="{Binding Path=quantity}" Header="SL" Width="50"/>
+                                <DataGridTextColumn Binding="{Binding Path=size}" Header="Size" Width="55"/>
+                                <DataGridTextColumn Binding="{Binding Path=stringUnitPrice}" Header="Đơn giá" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding Path=nameDiscount}" Header="Tên Ưu đãi" Width="140"/>
+                                <DataGridTextColumn Binding="{Binding Path=discountString}" Header="Ưu đãi" Width="SizeToHeader"/>
+
+                                <DataGridTextColumn Binding="{Binding Path=stringSumMoney}" Header="Thành tiền" Foreground="#FCC014" Width="SizeToHeader"/>
+                                <DataGridTextColumn Binding="{Binding Path=sumScore}" Header="Tổng Điểm" Foreground="#FCC014" Width="SizeToHeader"/>
+
+                                <!--Btn cancel add product-->
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="bntCancelBuyProduct" Click="bntCancelBuyProduct" Content="-" BorderBrush="{x:Null}" Background="Red">
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Name="SumMoneyLable" Content="Tổng tiền: 0đ" Foreground="#FBC31F" Margin="373,155,150,44"/>
+                        <Label Name="SumScoreLable" Content="Tổng điểm: 0" Foreground="#FBC31F" Margin="242,155,423,44"/>
+                        <Button x:Name="bntCanel" Click="bntCancel_Click" Width="110" Height="Auto" HorizontalAlignment="Center" Content="Hủy" Background="#EA4335"  Margin="640,184,50,15" BorderBrush="{x:Null}">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                            </Button.Effect>
+                        </Button>
+
+                        <Button x:Name="btnPay" Click="btnPay_Click"  Width="110" Height="Auto" HorizontalAlignment="Center" Content="Thanh toán"  Margin="505,184,185,15" BorderBrush="{x:Null}">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                            </Button.Effect>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+    </Canvas>
+</UserControl>

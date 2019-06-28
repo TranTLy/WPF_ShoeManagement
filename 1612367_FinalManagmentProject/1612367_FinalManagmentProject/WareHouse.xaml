@@ -1,0 +1,44 @@
+﻿<Window x:Class="_1612367_FinalManagmentProject.WareHouse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        
+        Title="WareHouse" Height="530" Width="910" Background="White">
+    <StackPanel Margin="10,5,8,5">
+
+        <UniformGrid  Columns="2" Margin="173,10,182,40" >
+            <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Khách hàng: "/>
+
+            <Label x:Name="lblNameCustomer" Visibility="Visible" Margin="-152,10,0,10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên Khách hàng" Width="256"/>
+        </UniformGrid>
+
+        <Grid Height="377">
+            <DataGrid x:Name="DetailReceiptDataGridShow"  VerticalScrollBarVisibility="Auto"  SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                     CanUserResizeColumns="False" IsReadOnly="True" Margin="5,9,15,50"  ItemsSource="{Binding listDetailReciept}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding order}" Header="STT" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding nameProduct}" Header="Tên hàng" Width="140"/>
+                    <DataGridTextColumn Binding="{Binding quantity}" Header="SL" Width="50"/>
+                    <DataGridTextColumn Binding="{Binding size}" Header="Size" Width="55"/>
+                    <DataGridTextColumn Binding="{Binding unitPriceSell}" Header="Đơn giá" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding nameDiscount}" Header="Tên Ưu đãi" Width="140"/>
+                    <DataGridTextColumn Binding="{Binding discountString}" Header="Ưu đãi" Width="SizeToHeader"/>
+
+                    <DataGridTextColumn Binding="{Binding sumMoney}" Header="Thành tiền" Foreground="#FCC014" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding sumScore}" Header="Tổng Điểm" Foreground="#FCC014" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label x:Name="SumMoneyLableShow" Content="Tổng tiền: 0đ" Foreground="#FBC31F" Margin="371,326,149,10"/>
+            <Label x:Name="SumScoreLableShow" Content="Tổng điểm: 0" Foreground="#FBC31F" Margin="220,326,438,10"/>
+            <Button x:Name="bntClose" Click="bntClose_Click" Width="98" Height="Auto" HorizontalAlignment="Center" Content="Đóng" Background="#EA4335"  Margin="682,327,104,15" BorderBrush="{x:Null}">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                </Button.Effect>
+            </Button>
+        </Grid>
+    </StackPanel>
+</Window>

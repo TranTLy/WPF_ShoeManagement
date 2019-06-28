@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="_1612367_FinalManagmentProject.ReportUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+             mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="530" d:DesignWidth="910" Background="White">
+    <Canvas>
+        <Label Content="THỐNG KÊ" FontSize="30" Canvas.Left="360" Canvas.Top="4"></Label>
+        <UniformGrid Columns="3" Width="705" Canvas.Top="70" Canvas.Left="46">
+            <UniformGrid Margin="20,0, 20, 0">
+                <Label Content="Thống kê theo"/>
+                <ComboBox Name="cbTimeStatistic"></ComboBox>
+            </UniformGrid>
+
+            <UniformGrid Margin="20,0, 20, 0">
+                <Label Content="Từ"/>
+                <DatePicker Name="startDate"></DatePicker>
+            </UniformGrid>
+            <UniformGrid Margin="20,0, 20, 0">
+                <Label Content="Đến"/>
+                <DatePicker Name="endDate"></DatePicker>
+            </UniformGrid>
+        </UniformGrid>
+        <Button Name="btnStatistic" Click="btnStatistic_Click" Content="Thống kê" Canvas.Left="782" Canvas.Top="82"></Button>
+
+        <Canvas Name="Content">
+            <UniformGrid Columns="4" Canvas.Left="55" Canvas.Top="120" Width="770">
+                <Label Content="Sản phẩm bán chạy nhất: " Canvas.Left="55" Canvas.Top="115"></Label>
+                <Label Name="nameProductlbl" Content="Tên sản phẩm" Canvas.Left="237" Canvas.Top="115"></Label>
+                <Label  Content="Số lượng còn:" Margin="88,0,4,0"/>
+                <Label Name="quantityProductlbl" Content="Số lượng còn"/>
+            </UniformGrid>
+            <UniformGrid Columns="4" Canvas.Left="54" Canvas.Top="150" Width="774" Height="42">
+                <Label Content="Khách hàng ưu tú: " Canvas.Left="55" Canvas.Top="115" Margin="1,0,0,0"></Label>
+                <Label Name="nameCustomerlbl" Content="Tên khách" Canvas.Left="237" Canvas.Top="115"></Label>
+                <Label Content="Điểm tích lũy: " Margin="84,0,0,0"/>
+                <Label Name="scoreCustomerlbl" Content="Điểm tích lũy"/>
+            </UniformGrid>
+
+            <Grid Name="gridTypeProductReport" Background="Wheat" Height="300" Width="370" Canvas.Top="185" Canvas.Left="40">
+                <lvc:CartesianChart Series="{Binding SeriesCollectionTypeProduct}" LegendLocation="Right" >
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Số lượng sản phẩm (đôi)" LabelFormatter="{Binding YFormatterTypeProduct}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Thời gian" Labels="{Binding LabelsTypeProduct}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>  
+                <Label HorizontalAlignment="Center" Content="Bảng thống kê tổng sản phẩm theo loại sản phẩm" Margin="1,298,3,-36"/>
+            </Grid>
+
+            <Grid Name="gridInterestReport" Background="Wheat" Height="300" Width="370" Canvas.Top="185" Canvas.Left="465">
+                <lvc:CartesianChart Series="{Binding SeriesCollection2}" LegendLocation="Right" >
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Lợi nhuận (đồng)" LabelFormatter="{Binding YFormatter2}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Thời gian" Labels="{Binding Labels2}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+                <Label HorizontalAlignment="Center" Content="Bảng thống kê tổng lợi nhuận sản phẩm" Margin="1,298,3,-36"/>
+            </Grid>
+
+        </Canvas>
+    </Canvas>
+</UserControl>

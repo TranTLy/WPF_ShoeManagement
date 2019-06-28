@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="_1612367_FinalManagmentProject.DiscountUserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="530" d:DesignWidth="910" Background="White">
+    <Canvas>
+        <Label Content="ƯU ĐÃI" FontSize="30" Canvas.Left="400" Canvas.Top="15"></Label>
+        <Grid  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               Height="441" Background="White"  Width="900" Canvas.Top="75" Canvas.Left="8">
+            <DataGrid Name="DiscountDataGrid" SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                      Margin="5,-12,5,11" CanUserResizeColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=order}" Header="STT" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameDiscount}" Header="Tên ưu đãi" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=status}" Header="Tình trạng" Width="120"/>
+                    <DataGridTextColumn Binding="{Binding Path=startShortDate}" Header="Ngày bắt đầu" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=endShortDate}" Header="Ngày kết thúc" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=discount}" Header="Phần trăm ưu đãi" Width="SizeToHeader"/>
+                    <!--<DataGridTextColumn Binding="{Binding Path=nameProduct}" Header="Sản phẩm áp dụng" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameTypeCustomer}" Header="Bậc khách hàng" Width="SizeToHeader"/>-->
+                    <!--Nút detail-->
+                    <!--Nút edit-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDetail" Click="btnDetail_Click">
+                                    <materialDesign:PackIcon Kind="Details" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Nút edit-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="bntEditCustomer" Click="bntEditCustomer_Click">
+                                    <materialDesign:PackIcon Kind="Edit" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!--Nút delete-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDelete" Click="btnDelete_Click">
+                                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!--btn Add-->
+        <Button Name="btnAdd" Click="btnAdd_Click" Canvas.Left="846" Canvas.Top="441" Background="#FF34BB2D" BorderBrush="{x:Null}">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+            </Button.Effect>
+            <materialDesign:PackIcon Kind="Add" Width="20" Height="20" VerticalAlignment="Center"/>
+        </Button>
+
+
+        <!--dialog thêm/ sửa thông tin ưu đãi-->
+        <materialDesign:DialogHost Name="dialogDiscount" CloseOnClickAway="True"
+                                   IsOpen="False" Width="900" Height="500" Canvas.Top="37" Canvas.Left="10">
+            <materialDesign:DialogHost.DialogContent>
+                <UniformGrid  Columns="2"  Width="400" Margin="173,0,182,4" >
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên ưu đãi"/>
+                    <TextBox Name="nameDiscountTxt" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" Height="30" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Sản phẩm áp dụng"/>
+                    <ComboBox Name="comboBoxTypeProduct"  VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Khách hàng áp dụng"/>
+                    <ComboBox Name="comboBoxTypeCustomer"  VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Ngày bắt đầu"/>
+                    <DatePicker Name="startDate" SelectedDateFormat="Short" Width="100" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Ngày kết thúc"/>
+                    <DatePicker Name="endDate" SelectedDateFormat="Short" Width="100" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Phần trăm ưu đãi (%)"/>
+                    <TextBox Name="percentDiscountTxt" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" Height="30" />
+
+                    <UniformGrid Name="statusGrid" Visibility="Hidden" Grid.ColumnSpan="2" Columns="2" Margin="0,0,-203,0">
+                        <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tình trạng"/>
+                        <ComboBox Name="comboBoxStatusDiscount" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,11,-10,11" Width="204" Height="30" />
+                    </UniformGrid>
+                    <Label></Label>
+                    <Button Name="btnSaveDiscount" Visibility="Collapsed" Click="bntSaveDiscount_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Lưu" Background="#FFEAEA2B"  Margin="0,17,0,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="btnAddDiscount" Click="btnAddDiscount_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Thêm" Background="#FF34BB2D"  Margin="0,17,0,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="btnCancelDialog" Click="btnCancelAddDiscount_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Hủy" Background="Red"  Margin="0,17,0,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                </UniformGrid>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+    </Canvas>
+</UserControl>

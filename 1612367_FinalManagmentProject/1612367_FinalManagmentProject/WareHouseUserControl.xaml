@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="_1612367_FinalManagmentProject.WareHouseUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="530" d:DesignWidth="940" Background="White">
+    <Canvas>
+        <Label Content="KHO HÀNG" FontSize="30" Canvas.Left="400" Canvas.Top="15"></Label>
+        <Label Name="SumProductLable" Content="Tổng: 0"  Foreground="#E98C0A" FontSize="16" Height="40" Width="130" Canvas.Left="765" Canvas.Top="5"></Label>
+        <Grid  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               Height="472" Canvas.Top="55" Width="940" Canvas.Left="0">
+            <DataGrid Name="ProductDataGrid" SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                      Margin="0,0,0,25" CanUserResizeColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=order}" Header="STT" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameProduct}" Header="Tên hàng" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameTypeProduct}" Header="Loại" Width="120"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[0]}" Header="Size 36" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[1]}" Header="Size 37" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[2]}" Header="Size 38" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[3]}" Header="Size 39" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[4]}" Header="Size 40" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[5]}" Header="Size 41" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=arrSizeQuantity[6]}" Header="Size 42" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=sumQuantity}" Foreground="#E98C0A" Header="Tổng" Width="SizeToHeader"/>
+                    <!--Nút add-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="bntAddItem" Click="bntAddItem_Click">
+                                    <materialDesign:PackIcon Kind="Add" Width="10" Height="10" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!--dialog-->
+        <materialDesign:DialogHost Name="dialogAddProduct" CloseOnClickAway="True"
+                                   IsOpen="False" Width="900" Height="461" Canvas.Top="55">
+            <materialDesign:DialogHost.DialogContent>
+                <UniformGrid Columns="2" Width="200" Margin="173,0,182,4" >
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 36"/>
+                    <TextBox Name="size36QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 37"/>
+                    <TextBox Name="size37QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 38"/>
+                    <TextBox Name="size38QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 39"/>
+                    <TextBox Name="size39QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 40"/>
+                    <TextBox Name="size40QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 41"/>
+                    <TextBox Name="size41QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Size 42"/>
+                    <TextBox Name="size42QuantityTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,12,0,13" Width="49" Height="30" />
+
+                    <Button Name="bntAddProduct" Width="100" Height="30" HorizontalAlignment="Center" Content="Thêm" Background="#FF34BB2D" Click="bntAddProduct_Click" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="btnCancelAddProduct" Width="100" Height="30" HorizontalAlignment="Center" Content="Hủy" Background="Red" Click="btnCancelAddProduct_Click" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                </UniformGrid>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+    </Canvas>
+</UserControl>

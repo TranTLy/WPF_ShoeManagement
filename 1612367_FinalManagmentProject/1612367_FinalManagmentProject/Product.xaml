@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="_1612367_FinalManagmentProject.Product"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="530" d:DesignWidth="910" Background="White">
+
+    <Canvas>
+        <Label Content="SẢN PHẨM" FontSize="30" Canvas.Left="395" Canvas.Top="15"></Label>
+        <UniformGrid Columns="3" Canvas.Left="95" Canvas.Top="68" Width="295">
+            <Label Content="Tìm kiếm"/>
+            <ComboBox Name="cbTypeProduct" SelectionChanged="cbTypeProduct_SelectionChanged"/>
+            
+        </UniformGrid>
+        <Grid  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               Height="390" Canvas.Top="120" Width="890" Canvas.Left="12">
+            <DataGrid Name="ProductDataGrid" SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                      Margin="5,0,5,30" CanUserResizeColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=order}" Header="STT" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameProduct}" Header="Tên hàng" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameCategory}" Header="Loại" Width="120"/>
+                    <DataGridTextColumn Binding="{Binding Path=stringPriceImport}" Header="Giá nhập kho" Width="120"/>
+                    <DataGridTextColumn Binding="{Binding Path=stringPriceSell}" Header="Giá bán" Width="120"/>
+                    <DataGridTextColumn Binding="{Binding Path=bonusScore}" Header="Điểm tích lũy" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=unit}" Header="Đơn vị" Width="SizeToHeader"/>
+                    <!--Nút edit-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnEdt" Click="btnEdt_Click">
+                                    <materialDesign:PackIcon Kind="Edit" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Nút delete-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDelete" Click="btnDelete_Click">
+                                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!--btn Add-->
+        <Button Name="btnAdd" Click="btnAdd_Click" Canvas.Left="846" Canvas.Top="441" Background="#FF34BB2D" BorderBrush="{x:Null}">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+            </Button.Effect>
+            <materialDesign:PackIcon Kind="Add" Width="20" Height="20" VerticalAlignment="Center"/>
+        </Button>
+
+
+        <!--dialog product-->
+        <materialDesign:DialogHost Name="dialogAddProduct" CloseOnClickAway="True"
+                                   IsOpen="False" Width="900" Height="451" Canvas.Top="65">
+            <materialDesign:DialogHost.DialogContent>
+                <UniformGrid Rows="9" Columns="2" Width="400" Margin="173,0,182,4" >
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên sản phẩm"/>
+                    <TextBox Name="nameProductTxt" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" Height="30" />
+
+                    <Label Name="categoryLable" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Loại"/>
+                    <ComboBox Name="comboBoxCategory" ItemsSource="{Binding nameType}" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Giá nhập hàng"/>
+                    <TextBox Name="priceImprotTxt" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200"/>
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Giá xuất"/>
+                    <TextBox Name="priceSellTxt" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200"/>
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Điểm tích lũy"/>
+                    <TextBox Name="bonusScoreTxt" Text="0" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200"/>
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Đơn vị"/>
+                    <TextBox Name="unitTxt" Text="Đôi" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200"/>
+
+                    <Label Name="lblSize" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Content="Size"/>
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left"  />
+
+                    <UniformGrid Name="sizeCheckboxs" HorizontalAlignment="Center" Grid.Row="7" Grid.ColumnSpan="2" Rows="1"  VerticalAlignment="Center" Height="22"  Margin="37,13,-195,11" Width="360">
+                        <CheckBox  Name="checkboxSize36" Content="36" IsChecked="True"/>
+                        <CheckBox  Name="checkboxSize37" Content="37" IsChecked="True"/>
+                        <CheckBox  Name="checkboxSize38" Content="38" IsChecked="True"/>
+                        <CheckBox  Name="checkboxSize39" Content="39" IsChecked="True"/>
+                        <CheckBox  Name="checkboxSize40" Content="40" IsChecked="True"/>
+                        <CheckBox  Name="checkboxSize41" Content="41" IsChecked="True"/>
+                        <CheckBox  Name="checkboxSize42" Content="42" IsChecked="True"/>
+                    </UniformGrid>
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                    <Button Name="btnSave" Visibility="Visible" Width="100" Height="30" HorizontalAlignment="Center" Content="Lưu" Click="btnSave_Click_1" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="bntAddProduct" Width="100" Height="30" HorizontalAlignment="Center" Content="Thêm" Background="#FF34BB2D" Click="bntAddProduct_Click" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="btnCancelAddProduct" Width="100" Height="30" HorizontalAlignment="Center" Content="Hủy" Background="Red" Click="btnCancelAddProduct_Click" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                </UniformGrid>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+    </Canvas>
+</UserControl>

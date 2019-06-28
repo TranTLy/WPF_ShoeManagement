@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ManagementProject" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=ManagementProject;Integrated Security=True" SettingsObjectName="_1612367_FinalManagmentProject.Properties.Settings" SettingsPropertyName="ManagementProjectConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TestDB2" Member="TestDB2s">
+    <Type Name="TestDB2">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.testdb3" Member="testdb3s">
+    <Type Name="testdb3">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CategoryDb" Member="CategoryDbs">
+    <Type Name="CategoryDb">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Score_TypeCustomer" Member="Score_TypeCustomers">
+    <Type Name="Score_TypeCustomer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameTypeCustomer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="minScore" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DiscountDb" Member="DiscountDbs">
+    <Type Name="DiscountDb">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameDiscount" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idTypeCustomer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="statusDiscount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="startDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="endDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="percentageDiscount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CustomerDb" Member="CustomerDbs">
+    <Type Name="CustomerDb">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameCustomer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="score" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="phoneNumber" Type="System.String" DbType="Char(11)" CanBeNull="true" />
+      <Column Name="typeCustomer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dateOfBirth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size36_Product" Member="Size36_Products">
+    <Type Name="Size36_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size37_Product" Member="Size37_Products">
+    <Type Name="Size37_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size38_Product" Member="Size38_Products">
+    <Type Name="Size38_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size39_Product" Member="Size39_Products">
+    <Type Name="Size39_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size40_Product" Member="Size40_Products">
+    <Type Name="Size40_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size41_Product" Member="Size41_Products">
+    <Type Name="Size41_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Size42_Product" Member="Size42_Products">
+    <Type Name="Size42_Product">
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Receipt" Member="Receipts">
+    <Type Name="Receipt">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idCustomer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="datePay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sumMoney" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="sumScore" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetailReceipt" Member="DetailReceipts">
+    <Type Name="DetailReceipt">
+      <Column Name="idDetailReceipt" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idReceipt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCustomer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idProduct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idTypeProduct" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="unitPriceSell" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idDiscount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="persentageDiscount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="unitBonusScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="datePay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="interest" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductDb" Member="ProductDbs">
+    <Type Name="ProductDb">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nameProduct" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="category" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="priceImport" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="priceSell" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="bonusScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="unit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sumQuantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

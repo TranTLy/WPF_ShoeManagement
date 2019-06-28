@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="_1612367_FinalManagmentProject.CustomerUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612367_FinalManagmentProject"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="530" d:DesignWidth="910" Background="White">
+
+    <Canvas>
+        <Label Content="KHÁCH HÀNG" FontSize="30" Canvas.Left="360" Canvas.Top="20"></Label>
+        <Grid  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               Height="453" Canvas.Top="85" Width="900" Canvas.Left="4">
+            <DataGrid Name="CustomerDataGrid" SelectionMode="Single" AutoGenerateColumns="False" Background="#EAECFF"  
+                      Margin="5,-12,5,42" CanUserResizeColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=order}" Header="STT" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameCustomer}" Header="Tên khách hàng" Width="180"/>
+                    <DataGridTextColumn Binding="{Binding Path=nameTypeCustomer}" Header="Bậc - Loại" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=score}" Header="Điểm tích lũy" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Path=dateOBShort}" Header="Ngày sinh" Width="190"/>
+                    <DataGridTextColumn Binding="{Binding Path=phoneNumber}" Header="Số điện thoại" Width="120"/>
+
+                    <!--Nút edit-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="bntEditCustomer" Click="bntEditCustomer_Click">
+                                    <materialDesign:PackIcon Kind="Edit" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Nút delete-->
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDelete" Click="btnDelete_Click">
+                                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!--btn Add-->
+        <Button Name="btnAdd" Click="btnAdd_Click" Canvas.Left="846" Canvas.Top="441" Background="#FF34BB2D" BorderBrush="{x:Null}">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+            </Button.Effect>
+            <materialDesign:PackIcon Kind="Add" Width="20" Height="20" VerticalAlignment="Center"/>
+        </Button>
+
+
+        <!--dialog thêm/ sửa thông tin khách hàng-->
+        <materialDesign:DialogHost Name="dialogCustomer" CloseOnClickAway="True"
+                                   IsOpen="False" Width="900" Height="500" Canvas.Top="37" Canvas.Left="10">
+            <materialDesign:DialogHost.DialogContent>
+                <UniformGrid Columns="2"  Width="400" Margin="173,0,182,4" >
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Tên khách hàng"/>
+                    <TextBox Name="nameCustomerTxt" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" Height="30" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Số điện thoại"/>
+                    <TextBox Name="phoneNumberTxt"  VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="#CCD0FF" BorderThickness="1" Margin="0,10,0,10" Width="200" />
+
+                    <Label Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Ngày sinh"/>
+                    <DatePicker Name="dateOB" SelectedDateFormat="Short" SelectedDate="1/1/1998" Width="100" materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <Button Name="btnSaveCustomer" Visibility="Collapsed" Click="bntSaveCustomer_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Lưu" Background="#FFEAEA2B"  Margin="0,17,0,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="btnAddCustomer" Click="btnAddCustomer_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Thêm" Background="#FF34BB2D"  Margin="0,17,0,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="btnCancelDialog" Click="btnCancelAddCustomer_Click" Width="100" Height="30" HorizontalAlignment="Center" Content="Hủy" Background="Red"  Margin="0,17,0,0" BorderBrush="{x:Null}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="5" Color="#FF8B8D8B"/>
+                        </Button.Effect>
+                    </Button>
+                </UniformGrid>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+    </Canvas>
+</UserControl>
